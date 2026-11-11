@@ -17,6 +17,7 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -35,6 +36,7 @@ body {
 
 img {
   display: block;
+  max-width: 100%;
 }
 
 a {
@@ -52,6 +54,7 @@ a {
 .site-header {
   position: sticky;
   top: 0;
+  z-index: 10;
   background: rgba(251, 246, 238, 0.96);
   border-bottom: 1px solid var(--line);
 }
@@ -74,7 +77,7 @@ a {
 }
 
 .nav-links {
-  dispaly: flex;
+  display: flex;
   gap: 28px;
   list-style: none;
 }
@@ -107,7 +110,7 @@ a {
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
-.btn:hovr {
+.btn:hover {
   background: var(--accent-dark);
   border-color: var(--accent-dark);
   transform: translateY(-2px);
@@ -115,7 +118,7 @@ a {
 
 .btn-outline {
   background: transparent;
-  color: var(--dark);
+  color: var(--cream);
   border-color: var(--cream);
 }
 
@@ -154,7 +157,7 @@ a {
 
 .hero h1 {
   margin-bottom: 16px;
-  color: #3d2a20;
+  color: var(--cream);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 4rem;
   line-height: 1.12;
@@ -179,16 +182,16 @@ a {
 
 .hero-img {
   width: 420px;
+  flex-shrink: 0;
 }
 
-/* ---------- Sections ---------- */
 
 .section {
   padding: 72px 0;
 }
 
 .section-alt {
-  background: var(--cream);
+  background:whitesmoke;
 }
 
 .section-title {
@@ -198,9 +201,17 @@ a {
   text-align: center;
 }
 
+.heading{
+   margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(172, 123, 123);
+}
+
 .section-sub {
   margin-bottom: 40px;
-  color: #d6cbbb;
+  color: white;
   text-align: center;
 }
 
@@ -208,13 +219,15 @@ a {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .card {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 28px;
-  background: var(--card);
+  background: white;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 6px 18px rgba(43, 29, 22, 0.06);
@@ -238,7 +251,81 @@ a {
 }
 
 .card p {
+  margin-bottom: 18px;
   color: var(--muted);
+}
+
+.card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items:center;
+  gap: 24px;
+}
+
+.plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  background: #2b1d16;
+  border: 1px solid brown;
+  border-radius:10px;
+  box-shadow: 0 6px 18px rgba(43, 29, 22, 0.06);
+}
+
+.plan-featured {
+  border: 2px solid grey;
+}
+
+.plan-badge {
+  align-self: flex-start;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background:orange;
+  color:white;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.plan-card h3 {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.plan-price {
+  color: brown;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.plan-price span {
+  color: grey;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.plan-tagline {
+  margin-bottom: 18px;
+  color:grey;
+}
+
+.plan-features {
+  margin: 0 0 24px 20px;
+  color: grey;
+}
+
+.plan-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 /* ---------- Contact form ---------- */
@@ -282,11 +369,18 @@ a {
 
 .field input:focus,
 .field textarea:focus {
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .contact-form .btn {
   width: 100%;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 3px;
 }
 
 /* ---------- Footer ---------- */
@@ -298,10 +392,7 @@ a {
   font-size: 0.9rem;
   text-align: center;
 }
-
-/* ---------- Responsive ---------- */
-
-@media (max-width 720px) {
+@media (max-width: 720px) {
   .nav-links {
     gap: 16px;
   }
@@ -312,16 +403,29 @@ a {
 
   .hero-inner {
     flex-direction: column;
-    align-items: stretch;
+    align-items:center;
     gap: 32px;
     padding: 56px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-img {
+    width: 100%;
   }
 
   .cards {
     grid-template-columns: 1fr;
   }
 
+  .plan-cards {
+    grid-template-columns: 1fr;
+  }
+
   .section {
-    padding: 52px 0;
+    padding: 50px 0;
   }
 }
+
